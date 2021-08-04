@@ -7,7 +7,7 @@
 # Editor-based HTTP Client requests
 /httpRequests/
 # 自定义
-.idea
+/.idea/
 *.iml
 out
 gen
