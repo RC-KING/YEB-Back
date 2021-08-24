@@ -3,6 +3,8 @@ package com.jdd.server.mapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.jdd.server.pojo.Menu;
 
+import java.util.List;
+
 /**
  * <p>
  *  Mapper 接口
@@ -13,4 +15,5 @@ import com.jdd.server.pojo.Menu;
  */
 public interface MenuMapper extends BaseMapper<Menu> {
 
+    List<Menu> getMenusByAdminId(Integer id);
 }

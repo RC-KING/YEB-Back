@@ -2,6 +2,9 @@ package com.jdd.server.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.jdd.server.pojo.Admin;
+import com.jdd.server.pojo.RespBean;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * <p>
@@ -12,5 +15,10 @@ import com.jdd.server.pojo.Admin;
  * @since 2021-08-04
  */
 public interface IAdminService extends IService<Admin> {
+
+
+    Admin getAdminByUserName(String username);
+
+    RespBean login(String username, String password, String code, HttpServletRequest request);
 
 }
