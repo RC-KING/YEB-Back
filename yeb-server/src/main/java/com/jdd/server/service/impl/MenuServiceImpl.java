@@ -37,7 +37,7 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements IM
      * @return
      */
     @Override
-    public List<Menu> getMenuByAdminId() {
+    public List<Menu> getMenusByAdminId() {
         // 通过SpringSecurity上下文获取管理员的ID
         Integer adminId = ((Admin) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getId();
         // 先通过Redis缓存去取该管理员对应权限的操作菜单
@@ -50,5 +50,10 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements IM
             stringObjectValueOperations.set("menu_" + adminId,menuList);
         }
        return menuList;
+    }
+
+    @Override
+    public List<Menu> getAllMenusWithRole() {
+        return menuMapper.getAllMenusWithRole();
     }
 }

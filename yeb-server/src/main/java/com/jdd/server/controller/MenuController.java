@@ -30,7 +30,7 @@ public class MenuController {
     @GetMapping("/menu")
     public List<Menu> getMenuByAdminId(){
         // 这里不通过前端传入ID, 而是在后台SpringSecurity上下文中获取用户的ID
-        return menuService.getMenuByAdminId();
+        return menuService.getMenusByAdminId();
     }
 
 }

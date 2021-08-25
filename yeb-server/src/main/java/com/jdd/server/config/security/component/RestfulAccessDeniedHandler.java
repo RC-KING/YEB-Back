@@ -1,4 +1,4 @@
-package com.jdd.server.config.security;
+package com.jdd.server.config.security.component;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.jdd.server.pojo.RespBean;

@@ -28,7 +28,6 @@ public class LoginController {
     }
 
     /**
-     *
      * 参数为Principal类,这个对象是SpringSecurity上下文中的对象,之前我们对这个对象刷新过
      * @param principal
      * @return
@@ -43,6 +42,9 @@ public class LoginController {
         Admin admin = adminService.getAdminByUserName(username);
         // 对个人隐私的保护
         admin.setPassword(null);
+        // 将该用户的权限设置到roles列表中
+        admin.setRoles(adminService.getRoles(admin.getId()));
+
         return admin;
     }
 

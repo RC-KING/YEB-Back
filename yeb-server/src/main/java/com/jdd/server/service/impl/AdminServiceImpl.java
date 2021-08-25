@@ -3,10 +3,12 @@ package com.jdd.server.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.jdd.server.config.security.JwtTokenUtil;
+import com.jdd.server.config.security.component.JwtTokenUtil;
 import com.jdd.server.mapper.AdminMapper;
+import com.jdd.server.mapper.RoleMapper;
 import com.jdd.server.pojo.Admin;
 import com.jdd.server.pojo.RespBean;
+import com.jdd.server.pojo.Role;
 import com.jdd.server.service.IAdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -20,6 +22,7 @@ import org.springframework.util.StringUtils;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -47,6 +50,9 @@ public class AdminServiceImpl extends ServiceImpl<AdminMapper, Admin> implements
     // JWT 负载中拿到开头
     @Value("${jwt.tokenHead}")
     private String tokenHead;
+
+    @Autowired
+    private RoleMapper roleMapper;
 
 
 
@@ -86,6 +92,11 @@ public class AdminServiceImpl extends ServiceImpl<AdminMapper, Admin> implements
         return RespBean.success("登录成功", tokenMap);
     }
 
+    // 根据用户id,查询拥有的角色
+    @Override
+    public List<Role> getRoles(Integer adminId) {
+        return roleMapper.getRoles(adminId);
+    }
 
 
     @Override
