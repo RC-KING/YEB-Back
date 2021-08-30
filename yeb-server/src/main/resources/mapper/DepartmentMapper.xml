@@ -11,10 +11,44 @@
         <result column="enabled" property="enabled" />
         <result column="isParent" property="isParent" />
     </resultMap>
+    
+    <resultMap id="DepartmentWithChildren" type="com.jdd.server.pojo.Department" extends="BaseResultMap">
+        <!--这里用了递归查询, 这里的id是主键id-->
+        <!--类似于先用parentId查询出第一条数据,再根据第一条的 主键==parentId去查询,然后查出来的每一条用自己的 主键==parentId去查询......-->
+        <collection property="children" ofType="com.jdd.server.pojo.Department"
+                    select="com.jdd.server.mapper.DepartmentMapper.getAllDepartments" column="id">
+        </collection>
+    </resultMap>
+    
+    
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
         id, name, parentId, depPath, enabled, isParent
     </sql>
+
+
+    <!--删除部门-->
+    <select id="deleteDepartment" statementType="CALLABLE">
+        call deleteDep(
+            #{id,mode=IN,jdbcType=INTEGER},
+            #{result,mode=OUT,jdbcType=INTEGER})
+    </select>
+    <!--添加部门-->
+    <select id="addDepartment" statementType="CALLABLE">
+        call addDep(#{name,mode=IN,jdbcType=VARCHAR},
+            #{parentId,mode=IN,jdbcType=INTEGER},
+            #{enabled,mode=IN,jdbcType=BOOLEAN},
+            #{result,mode=OUT,jdbcType=INTEGER},
+            #{id,mode=OUT,jdbcType=INTEGER})
+    </select>
+
+    <!--获取所有部门-->
+    <select id="getAllDepartments" resultMap="DepartmentWithChildren">
+        select
+        <include refid="Base_Column_List"/>
+        from t_department
+        where parentId = #{parentId}
+    </select>
 
 </mapper>

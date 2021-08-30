@@ -3,6 +3,8 @@ package com.jdd.server.mapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.jdd.server.pojo.Department;
 
+import java.util.List;
+
 /**
  * <p>
  *  Mapper 接口
@@ -13,4 +15,9 @@ import com.jdd.server.pojo.Department;
  */
 public interface DepartmentMapper extends BaseMapper<Department> {
 
+    List<Department> getAllDepartments(Integer parentId);
+
+    void addDepartment(Department department);
+
+    void deleteDepartment(Department department);
 }

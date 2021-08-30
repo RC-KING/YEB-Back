@@ -56,4 +56,9 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements IM
     public List<Menu> getAllMenusWithRole() {
         return menuMapper.getAllMenusWithRole();
     }
+
+    @Override
+    public List<Menu> getAllMenus() {
+        return menuMapper.getAllMenus();
+    }
 }
