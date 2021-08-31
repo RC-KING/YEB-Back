@@ -2,6 +2,9 @@ package com.jdd.server.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.jdd.server.pojo.Admin;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 /**
  * <p>
@@ -13,4 +16,5 @@ import com.jdd.server.pojo.Admin;
  */
 public interface AdminMapper extends BaseMapper<Admin> {
 
+    List<Admin> getAllAdmins(@Param("id") Integer id, @Param("keywords") String keywords);
 }
