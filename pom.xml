@@ -5,7 +5,8 @@
 
     <modules>
         <module>yeb-server</module>
-
+        <module>xxxx</module>
+        <module>xxxxxx</module>
     </modules>
 
     <parent>
